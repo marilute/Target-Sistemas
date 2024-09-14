@@ -1,0 +1,67 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    // Define uma classe para armazenar os dados diários de faturamento
+    public class FaturamentoDiario
+    {
+        public int Dia { get; set; }
+        public double Valor { get; set; }
+    }
+
+    static void Main()
+    {
+        // Dados do faturamento diário
+        var faturamentos = new[]
+        {
+            new FaturamentoDiario { Dia = 1, Valor = 22174.1664 },
+            new FaturamentoDiario { Dia = 2, Valor = 24537.6698 },
+            new FaturamentoDiario { Dia = 3, Valor = 26139.6134 },
+            new FaturamentoDiario { Dia = 4, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 5, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 6, Valor = 26742.6612 },
+            new FaturamentoDiario { Dia = 7, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 8, Valor = 42889.2258 },
+            new FaturamentoDiario { Dia = 9, Valor = 46251.174 },
+            new FaturamentoDiario { Dia = 10, Valor = 11191.4722 },
+            new FaturamentoDiario { Dia = 11, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 12, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 13, Valor = 3847.4823 },
+            new FaturamentoDiario { Dia = 14, Valor = 373.7838 },
+            new FaturamentoDiario { Dia = 15, Valor = 2659.7563 },
+            new FaturamentoDiario { Dia = 16, Valor = 48924.2448 },
+            new FaturamentoDiario { Dia = 17, Valor = 18419.2614 },
+            new FaturamentoDiario { Dia = 18, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 19, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 20, Valor = 35240.1826 },
+            new FaturamentoDiario { Dia = 21, Valor = 43829.1667 },
+            new FaturamentoDiario { Dia = 22, Valor = 18235.6852 },
+            new FaturamentoDiario { Dia = 23, Valor = 4355.0662 },
+            new FaturamentoDiario { Dia = 24, Valor = 13327.1025 },
+            new FaturamentoDiario { Dia = 25, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 26, Valor = 0.0 },
+            new FaturamentoDiario { Dia = 27, Valor = 25681.8318 },
+            new FaturamentoDiario { Dia = 28, Valor = 1718.1221 },
+            new FaturamentoDiario { Dia = 29, Valor = 13220.495 },
+            new FaturamentoDiario { Dia = 30, Valor = 8414.61 }
+        };
+
+        // Calcula o menor valor de faturamento
+        double menorValor = faturamentos.Where(f => f.Valor > 0).Min(f => f.Valor);
+
+        // Calcula o maior valor de faturamento
+        double maiorValor = faturamentos.Max(f => f.Valor);
+
+        // Calcula a média mensal de faturamento
+        double mediaMensal = faturamentos.Where(f => f.Valor > 0).Average(f => f.Valor);
+
+        // Conta o número de dias com faturamento superior à média mensal
+        int diasAcimaDaMedia = faturamentos.Count(f => f.Valor > mediaMensal);
+
+        // Exibe os resultados
+        Console.WriteLine($"Menor valor de faturamento: {menorValor}");
+        Console.WriteLine($"Maior valor de faturamento: {maiorValor}");
+        Console.WriteLine($"Número de dias com faturamento superior à média mensal: {diasAcimaDaMedia}");
+    }
+}
