@@ -1,0 +1,54 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Solicita ao usuário para inserir um número
+        Console.Write("Informe um número: ");
+        if (int.TryParse(Console.ReadLine(), out int numero))
+        {
+            // Verifica se o número pertence à sequência de Fibonacci
+            if (PertenceSequenciaFibonacci(numero))
+            {
+                Console.WriteLine($"{numero} pertence à sequência de Fibonacci.");
+            }
+            else
+            {
+                Console.WriteLine($"{numero} não pertence à sequência de Fibonacci.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Número inválido.");
+        }
+    }
+
+    static bool PertenceSequenciaFibonacci(int numero)
+    {
+        // Se o número for menor que 0, não pertence à sequência de Fibonacci
+        if (numero < 0)
+        {
+            return false;
+        }
+
+        // Casos base: 0 e 1 pertencem à sequência de Fibonacci
+        if (numero == 0 || numero == 1)
+        {
+            return true;
+        }
+
+        // Inicializa os primeiros dois números da sequência de Fibonacci
+        int a = 0, b = 1;
+
+        // Gera a sequencia de Fibonacci até o numero fornecido
+        while (b < numero)
+        {
+            int temp = a;
+            a = b;
+            b = temp + b;
+        }
+
+        // Verifica se o numero é igual ao numero gerado
+        return b == numero;
+    }
